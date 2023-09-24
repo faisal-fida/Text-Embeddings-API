@@ -14,7 +14,7 @@ def make_embeddings(text_string):
 
     try:
         embeddings = model.encode(sentences)
-        return embeddings
+        return embeddings.tolist()
     except Exception as e:
         error_msg = {'Error': e}
         logging.error(f'Got Error: {error_msg["Error"]}')
