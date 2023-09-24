@@ -36,7 +36,7 @@ def embed_text():
         embeddings = make_embeddings(text_string['text'])
         logging.info('Embeddings:')
         logging.info(f'{embeddings}')
-        final_embeddings = {'Embeddings':embeddings.tolist()}
+        final_embeddings = {'Embeddings':embeddings}
         return final_embeddings, 200
     
     except Exception as e:
