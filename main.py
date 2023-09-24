@@ -37,7 +37,7 @@ def embed_text():
         logging.info('Embeddings:')
         logging.info(f'{embeddings}')
         final_embeddings = {'Embeddings':embeddings.tolist()}
-        return jsonify(final_embeddings), 200
+        return final_embeddings, 200
     
     except Exception as e:
         error_msg = {'Error':e}
