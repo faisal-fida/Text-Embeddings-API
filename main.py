@@ -14,7 +14,8 @@ def make_embeddings(text_string):
 
     try:
         embeddings = model.encode(sentences)
-        return embeddings.tolist()
+        return embeddings
+    
     except Exception as e:
         error_msg = {'Error': e}
         logging.error(f'Got Error: {error_msg["Error"]}')
@@ -22,18 +23,21 @@ def make_embeddings(text_string):
 
 @app.route('/', methods=['POST'])
 def embed_text():
+
     try:
         text_string = request.get_json()
+        logging.info('Got JSON_DATA.')
 
         if 'text' not in text_string:
             error_msg = {'Error':'Missing text field in JSON_DATA.'}
             logging.error(error_msg['Error'])
             return error_msg, 400
         
-        embeddings = make_embeddings(text_string)
-        logging.info('Embeddings process successfull.')
+        embeddings = make_embeddings(text_string['text'])
+        logging.info('Embeddings:')
+        logging.info(f'{embeddings}')
         return jsonify({'Embeddings':embeddings})
-
+    
     except Exception as e:
         error_msg = {'Error':e}
         logging.error(f'Got Error: {error_msg["Error"]}')
