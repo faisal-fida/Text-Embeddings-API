@@ -1,3 +1,4 @@
+import json
 import logging
 from flask import Flask
 from flask import jsonify, request
@@ -36,8 +37,9 @@ def embed_text():
         embeddings = make_embeddings(text_string['text'])
         logging.info('Embeddings:')
         logging.info(f'{embeddings}')
-        # final_embeddings = {'Embeddings':embeddings}
-        return embeddings, 200
+        embeddings = embeddings.tolist()
+        response_json = json.dumps({'Embeddings':embeddings})
+        return response_json, 200
     
     except Exception as e:
         error_msg = {'Error':e}
