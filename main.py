@@ -39,4 +39,5 @@ def embed_text():
         logging.error(f'Got Error: {error_msg["Error"]}')
         return error_msg, 500
 
-app.run()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
